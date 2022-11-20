@@ -1,0 +1,30 @@
+# coding: utf-8 
+# @Time    : 2022/10/17 上午10:32
+# r'scrapy框架  封装的各种功能的详细用法
+# 爬虫中封装好的一个明星框架  功能：高性能的持久化储存、异步的数据下载、高性能的数据解析、分布式
+# scrapy的基本使用
+# --创建一个工程  scrapy startproject xxxPro
+# --cd xxxPro
+# --需要在spiders子目录中创建一个爬虫文件
+#     --scrapy genspider spiderName www.xxx.com
+#  --执行工程：scrapy crawl spiderName
+
+"""
+数据解析
+"""
+# 持久化存储
+#     --基于终端指令
+#           -要求：只可以将parse方法的返回值存储到本地的文本文件中
+#           - scrapy crawl xxxx -o ./xx.csv
+#           -好处 简介高效便捷
+#           -坏处 局限性比较强（数据只可以存储到指定后缀的文本文件中）
+
+#     --基于管道
+          -编码流程：
+                -1.数据解析
+                -在item类中定义相关的属性
+                -2.将解析的数据封装到item类型的对象
+                -将item类型的对象提交给管道进行持久化存储的操作
+                -在管道内的process_item中要将其接受到的item对象中存储的数据来接收
+                -在配置文件中开启管道
+                    - 好处 通用性强
